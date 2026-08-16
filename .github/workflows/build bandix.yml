@@ -82,9 +82,8 @@ jobs:
       - name: Generate new tag & release
         if: steps.check_version.outputs.has_update == 'true' && steps.prepare_release.outputs.status == 'success'
         uses: softprops/action-gh-release@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
+          token: ${{ secrets.release_token }}
           tag_name: ${{steps.check_version.outputs.latest_version}}
           body_path: release.txt
           files: ${{ steps.prepare_release.outputs.release_path }}/*
