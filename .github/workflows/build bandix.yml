@@ -83,7 +83,7 @@ jobs:
         if: steps.check_version.outputs.has_update == 'true' && steps.prepare_release.outputs.status == 'success'
         uses: softprops/action-gh-release@v3
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
           tag_name: ${{steps.check_version.outputs.latest_version}}
           body_path: release.txt
